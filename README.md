@@ -25,7 +25,6 @@ This is an Alfred 3 workflow meant to assist in managing GoToMeeting lines. Each
 - `go delete`: start typing to search for the entry you want to delete. Once it appears, select it and hit enter; that entry will be removed from the phonebook.
 
 ## TODO
-- fix error message about 'not enough args' to be clearer
 - List all entries by default when searching
 - Allow renaming of entries in addition to modifying line numbers
 - Create import/export option for adding or modifying many entries at once

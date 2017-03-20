@@ -69,7 +69,7 @@ def main(wf):
 
             sane_query = True
         else:
-            notify("No entry added", "Not enough arguments. Make sure you add a description and a number.")
+            notify("No entry added", "Not enough information provided.", "Make sure you provide both a description and a number.")
             return
 
     # is the query sane? let's move on.
