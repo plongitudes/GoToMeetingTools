@@ -1,12 +1,14 @@
 #!/usr/bin/python
 # encoding: utf-8
 
-import json
 import os
 import string
 import sys
 import workflow
 from workflow.notify import notify
+
+GITHUB_REPO = 'plongitudes/GoToMeetingTools'
+UPDATE_FREQUENCY = 1
 
 def main(wf):
 

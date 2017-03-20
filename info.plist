@@ -5,7 +5,7 @@
 	<key>bundleid</key>
 	<string>com.tonyetienne.gotomeeting.tools</string>
 	<key>category</key>
-	<string>Shotgun</string>
+	<string>Tools</string>
 	<key>connections</key>
 	<dict>
 		<key>1F28D3D3-4694-4131-8168-BFE9070704B0</key>
@@ -167,11 +167,11 @@
 	<key>createdby</key>
 	<string>Tony Etienne</string>
 	<key>description</key>
-	<string>All kinds of gotomeeting capabilities</string>
+	<string>GoToMeeting phonebook and launcher</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>GotoMeeting Tools</string>
+	<string>GoToMeeting Tools</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -597,6 +597,6 @@
 		</dict>
 	</dict>
 	<key>webaddress</key>
-	<string>http://plongitudes.com</string>
+	<string>https://github.com/plongitudes/GoToMeetingTools</string>
 </dict>
 </plist>
