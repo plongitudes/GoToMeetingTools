@@ -53,7 +53,10 @@ def main(wf):
         del query[0]
         # grab the last arg, it should be the number
         number = query[len(query)-1]
-        # sanitize the number
+        # sanitize the number, starting with stripping out `-`s if present
+        valid_chars = (string.digits)
+        number = ''.join(c for c in number if c in valid_chars)
+
         if ((representsInt(number) == True) and (isMeetingNumber(number))):
             valid_number = number
             del query[len(query)-1]
