@@ -114,15 +114,19 @@ def main(wf):
 
         elif (action == "override"):
             index = 0
-            log.debug("input: " + str(wf.args))
+            log.debug("looking for: " + str(wf.args))
             for item in phonebook:
                 if item['desc'] == valid_name:
                     matchname = item
-                    log.debug("found item: " + str(item))
+                    log.debug("found item: " + str(item) + " at index " + str(index))
                     break
+                else:
+                    index += 1
             else:
-                index += 1
                 matchname = {'line':None, 'desc':None}
+
+            log.debug("match: " + str(matchname))
+            log.debug("replacing: " + str(phonebook[index]) + " at index " + str(index))
 
             # with a valid match, let's rewrite the entry with the new number
             if (valid_number != None) and (item['desc'] != None):
