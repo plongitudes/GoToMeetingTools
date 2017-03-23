@@ -9,6 +9,8 @@ import sys
 import workflow
 from workflow.notify import notify
 
+from goto_validate import sanitizeNum
+
 log = None
 
 def main(wf):
@@ -16,7 +18,7 @@ def main(wf):
     log.debug('Started')
 
     # set json as the serializer so that the phonebook is human readable (during debugging)
-    #wf.data_serializer = 'json'
+    # wf.data_serializer = 'json'
 
     # init some things
     action = ""
@@ -32,20 +34,6 @@ def main(wf):
     # split args
     query = wf.args[0].split()
 
-    # two small funcs to validate gotomeeting numbers
-    def representsInt(someString):
-        try:
-            int(someString)
-            return True
-        except ValueError:
-            return False
-
-    def isMeetingNumber(someString):
-        if ((representsInt(someString)) and (len(someString) == 9)):
-            return True
-        else:
-            return False
-
     # and now sanity checks for the query
     log.debug(query)
     if (len(query) >= 3):
@@ -53,12 +41,11 @@ def main(wf):
         del query[0]
         # grab the last arg, it should be the number
         number = query[len(query)-1]
+        
         # sanitize the number, starting with stripping out `-`s if present
-        valid_chars = (string.digits)
-        number = ''.join(c for c in number if c in valid_chars)
-
-        if ((representsInt(number) == True) and (isMeetingNumber(number))):
-            valid_number = number
+        valid_number = sanitizeNum(number)
+        log.debug(str(number) + " returned: " + str(valid_number))
+        if valid_number is not None:
             del query[len(query)-1]
 
             nickname = query
@@ -69,7 +56,7 @@ def main(wf):
 
             sane_query = True
         else:
-            notify("No entry added", "Not enough information provided.", "Make sure you provide both a description and a number.")
+            notify("No entry added", "Not enough information provided. Make sure you provide both a description and a number.")
             return
 
     # is the query sane? let's move on.

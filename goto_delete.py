@@ -16,7 +16,7 @@ def main(wf):
     log.debug('Started')
 
     # set json as the serializer so that the phonebook is human readable
-    #wf.data_serializer = 'json'
+    # wf.data_serializer = 'json'
 
     if wf.stored_data('gotoPhonebook'):
         phonebook = wf.stored_data('gotoPhonebook')

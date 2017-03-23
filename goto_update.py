@@ -8,30 +8,18 @@ import sys
 import workflow
 from workflow.notify import notify
 
+from goto_validate import sanitizeNum
+
 def main(wf):
 
     log.debug('Started')
 
     # set json as the serializer so that the phonebook is human readable (during debugging)
-    #wf.data_serializer = 'json'
+    # wf.data_serializer = 'json'
 
     # format phonebook so that Alfred can search it
     def key_for_entries(book):
         return '{} {}'.format(book['line'], book['desc'])
-
-    # two small funcs to validate gotomeeting numbers
-    def representsInt(someString):
-        try:
-            int(someString)
-            return True
-        except ValueError:
-            return False
-
-    def isMeetingNumber(someString):
-        if ((representsInt(someString)) and (len(someString) == 9)):
-            return True
-        else:
-            return False
 
     # load up the phonebook
     if wf.stored_data('gotoPhonebook'):
@@ -55,8 +43,10 @@ def main(wf):
     valid_number = None
 
     # but only if it's a complete number
-    if ((representsInt(number) == True) and (isMeetingNumber(number))):
-        valid_number = number
+
+    valid_number = sanitizeNum(number)
+    if valid_number is not None:
+    #if ((representsInt(number) == True) and (isMeetingNumber(number))):
         del query_items[lastarg]
 
     # let's make the valid_name again
@@ -78,7 +68,7 @@ def main(wf):
     if not items:
         wf.add_item(
             title="No matches found",
-            icon=workflow.ICON_WARNING
+            icon=workflow.ICON_INFO
         )
 
     for item in items:
