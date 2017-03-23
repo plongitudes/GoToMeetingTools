@@ -9,13 +9,13 @@ This is an Alfred 3 workflow meant to assist in managing GoToMeeting lines. Each
 - Double click the .alfredworkflow file to install it
 
 ## Usage Summary
-- go add <descriptor> <goto line #>
-- go join <search pattern>
-- go update <search pattern>
-- go delete <search pattern>
+- go add <lt;descriptor>rt; <lt;goto line #>rt;
+- go join <lt;search pattern>rt;
+- go update <lt;search pattern>rt;
+- go delete <lt;search pattern>rt;
 - go backup
 - go restore
-- go import <filename>
+- go import <lt;filename>rt;
 
 ## Usage Details
 - `go add`: is how you create new phonebook entries. The descriptor can be any combination of letters, numbers, and the following special characters: `_`, `.`, `(`, `)`, and ` `. Any other characters will be stripped.
