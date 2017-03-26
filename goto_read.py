@@ -30,10 +30,30 @@ def main(wf):
         )
 
     query = wf.args[1]
+    log.debug("query = wf.args[1]: " + str(query))
+    # check to see if the user is typing a valid number,
+    # in case they want to join a meeting for which they have no entry
     valid_number = sanitizeNum(query)
-    items = wf.filter(query, phonebook, key_for_entries)
 
-    if (not items) and (valid_number is None) and (phonebook):
+    if (len(query) > 0):
+        # and look up what they're typing also.
+        items = wf.filter(query, phonebook, key_for_entries)
+    elif (len(query) == 0):
+        items = []
+        for item in phonebook:
+            if wf.args[0] == "update":
+                arg_output = item['desc']
+            else:
+                arg_output = item['line']
+            wf.add_item(
+                title=item['desc'],
+                subtitle=item['line'],
+                arg=arg_output,
+                valid=True
+            )
+        wf.send_feedback()
+
+    if (len(query) > 0 ) and (not items) and (valid_number is None) and (phonebook):
         wf.add_item(
             title="No matches found",
             icon=workflow.ICON_WARNING
@@ -57,7 +77,6 @@ def main(wf):
                 valid=True
             )
         wf.send_feedback()
-
     elif wf.args[0] == "update":
         for item in items:
             wf.add_item(

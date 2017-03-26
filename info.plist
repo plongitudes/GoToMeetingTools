@@ -202,11 +202,37 @@
 				<false/>
 			</dict>
 		</array>
+		<key>BE6169BE-CF5E-434D-8E47-8C57BBB50076</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E53F2BA0-D67A-4D5D-9BE7-D4D15C9D432D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>D085D50A-867A-4B0A-9226-F82C2B85DB4E</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>76928077-A756-4405-9D46-73376A4CB956</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>E53F2BA0-D67A-4D5D-9BE7-D4D15C9D432D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>667407DB-D644-428B-9535-C0010F76788B</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -376,7 +402,7 @@
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>argumenttype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>8</integer>
 				<key>keyword</key>
@@ -436,7 +462,7 @@
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>argumenttype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>8</integer>
 				<key>keyword</key>
@@ -594,6 +620,66 @@
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>47E07F5D-D29E-4910-A0A1-8C705D24AA4E</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>Join my GotoMeeting: https://global.gotomeeting.com/host/{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>E53F2BA0-D67A-4D5D-9BE7-D4D15C9D432D</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>8</integer>
+				<key>keyword</key>
+				<string>go share</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>please wait</string>
+				<key>script</key>
+				<string>python goto_read.py read "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string>goto_helper.py</string>
+				<key>subtext</key>
+				<string>Enter a line or name to share</string>
+				<key>title</key>
+				<string>Share a GotoMeeting link</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>BE6169BE-CF5E-434D-8E47-8C57BBB50076</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -832,14 +918,14 @@
 			<key>xpos</key>
 			<integer>110</integer>
 			<key>ypos</key>
-			<integer>630</integer>
+			<integer>750</integer>
 		</dict>
 		<key>40DAF53E-964C-4683-8767-87928F86AE81</key>
 		<dict>
 			<key>xpos</key>
 			<integer>290</integer>
 			<key>ypos</key>
-			<integer>780</integer>
+			<integer>900</integer>
 		</dict>
 		<key>47E07F5D-D29E-4910-A0A1-8C705D24AA4E</key>
 		<dict>
@@ -853,7 +939,7 @@
 			<key>xpos</key>
 			<integer>430</integer>
 			<key>ypos</key>
-			<integer>510</integer>
+			<integer>630</integer>
 		</dict>
 		<key>55285624-82D1-4F88-BAAE-2B5605485666</key>
 		<dict>
@@ -888,7 +974,7 @@
 			<key>xpos</key>
 			<integer>290</integer>
 			<key>ypos</key>
-			<integer>660</integer>
+			<integer>780</integer>
 		</dict>
 		<key>76928077-A756-4405-9D46-73376A4CB956</key>
 		<dict>
@@ -902,14 +988,21 @@
 			<key>xpos</key>
 			<integer>110</integer>
 			<key>ypos</key>
-			<integer>510</integer>
+			<integer>630</integer>
 		</dict>
 		<key>A538CD01-0611-433C-9B77-4FABC2BE4876</key>
 		<dict>
 			<key>xpos</key>
 			<integer>290</integer>
 			<key>ypos</key>
-			<integer>540</integer>
+			<integer>660</integer>
+		</dict>
+		<key>BE6169BE-CF5E-434D-8E47-8C57BBB50076</key>
+		<dict>
+			<key>xpos</key>
+			<integer>110</integer>
+			<key>ypos</key>
+			<integer>510</integer>
 		</dict>
 		<key>D085D50A-867A-4B0A-9226-F82C2B85DB4E</key>
 		<dict>
@@ -917,6 +1010,13 @@
 			<integer>110</integer>
 			<key>ypos</key>
 			<integer>150</integer>
+		</dict>
+		<key>E53F2BA0-D67A-4D5D-9BE7-D4D15C9D432D</key>
+		<dict>
+			<key>xpos</key>
+			<integer>430</integer>
+			<key>ypos</key>
+			<integer>510</integer>
 		</dict>
 		<key>E8E7B7D5-96D3-4385-B6B8-E07286FA00EE</key>
 		<dict>
@@ -937,7 +1037,7 @@
 			<key>xpos</key>
 			<integer>110</integer>
 			<key>ypos</key>
-			<integer>750</integer>
+			<integer>870</integer>
 		</dict>
 	</dict>
 	<key>webaddress</key>
