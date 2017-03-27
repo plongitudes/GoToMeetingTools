@@ -18,6 +18,14 @@ def main(wf):
     # set json as the serializer so that the phonebook is human readable (during debugging)
     # wf.data_serializer = 'json'
 
+    if wf.update_available:
+        # Add a notification to top of Script Filter results
+        wf.add_item(
+            title="New version available",
+            subtitle="Select this menu item to install the update",
+            autocomplete="workflow:update",
+            icon=ICON_INFO
+        )
     if wf.stored_data('gotoPhonebook'):
         phonebook = wf.stored_data('gotoPhonebook')
     else:
@@ -91,7 +99,12 @@ def key_for_entries(book):
     return '{} {}'.format(book['line'], book['desc'])
 
 if __name__ == u"__main__":
-    wf = workflow.Workflow()
+    wf = workflow.Workflow(
+            update_settings={
+                'github_slug': 'plongitudes/GoToMeetingTools',
+                'frequency': 1
+                }
+            )
     log = wf.logger
     sys.exit(wf.run(main))
 
