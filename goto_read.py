@@ -21,7 +21,7 @@ def main(wf):
             title="New version available",
             subtitle="Select this menu item to install the update",
             autocomplete="workflow:update",
-            icon=ICON_INFO
+            icon=workflow.ICON_INFO
         )
 
     if wf.stored_data('gotoPhonebook'):

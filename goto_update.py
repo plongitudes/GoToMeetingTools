@@ -28,7 +28,7 @@ def main(wf):
         wf.add_item(
             title="GotoMeeting Address Book is empty",
             subtitle="Use the 'go add' keyword to add entries",
-            icon=ICON_INFO
+            icon=workflow.ICON_INFO
         )
 
     # get rid of the "update" part of the query so that we can match on a name
