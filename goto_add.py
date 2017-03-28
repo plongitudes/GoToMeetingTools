@@ -9,7 +9,8 @@ import sys
 import workflow
 from workflow.notify import notify
 
-from goto_validate import sanitizeNum
+from util import sanitizeNum
+from util import idGetter
 
 log = None
 
@@ -37,6 +38,7 @@ def main(wf):
     # and now sanity checks for the query
     log.debug(query)
     if (len(query) >= 3):
+        flag = ""
         action = query[0]
         del query[0]
         # grab the last arg, it should be the number
@@ -44,10 +46,20 @@ def main(wf):
         
         # sanitize the number, starting with stripping out `-`s if present
         valid_number = sanitizeNum(number)
+        if valid_number is None:
+            flag = "not_num"
+            # maybe the number was a url instead, we should grab the url id
+            valid_number = idGetter(number)
+            if valid_number is None:
+                flag = "not_url"
         log.debug(str(number) + " returned: " + str(valid_number))
+
+        # we got something, let's use it.
         if valid_number is not None:
+            # we don't need the last thing any more
             del query[len(query)-1]
 
+            # what's left should be the description for the line
             nickname = query
             nickname = " ".join(nickname)
             # sanitize the name for storage
@@ -56,13 +68,17 @@ def main(wf):
 
             sane_query = True
         else:
-            notify("No entry added", "Not enough information provided. Make sure you provide both a description and a number.")
+            if flag == "not_num":
+                notify("No entry added", "The number you provided wasn't a valid GoToMeeting line. Make sure you provide both a description and a valid number.")
+            elif flag == "not_url":
+                notify("No entry added", "Something was wrong with the url you provided, it doesn't seem to lead to a valid GoToMeeting line.")
+            else:
+                notify("No entry added", "Not enough information provided. Make sure you provide both a description and a number.")
             return
 
     # is the query sane? let's move on.
     log.debug(str(sane_query))
     if (sane_query == True):
-        log.debug("inside sane_query if")
         if (str(action) == "create"):
 
             log.debug("starting create action")

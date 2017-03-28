@@ -9,7 +9,7 @@ import string
 import workflow
 from workflow.notify import notify
 
-from goto_validate import sanitizeNum
+from util import sanitizeNum
 
 log = None
 

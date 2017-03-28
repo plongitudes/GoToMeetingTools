@@ -6,10 +6,7 @@ import string
 import sys
 import workflow
 
-from goto_validate import sanitizeNum
-
-GITHUB_REPO = 'plongitudes/GoToMeetingTools'
-UPDATE_FREQUENCY = 1
+from util import sanitizeNum
 
 def main(wf):
 
@@ -26,6 +23,7 @@ def main(wf):
             autocomplete="workflow:update",
             icon=ICON_INFO
         )
+
     if wf.stored_data('gotoPhonebook'):
         phonebook = wf.stored_data('gotoPhonebook')
     else:
@@ -43,10 +41,7 @@ def main(wf):
     # in case they want to join a meeting for which they have no entry
     valid_number = sanitizeNum(query)
 
-    if (len(query) > 0):
-        # and look up what they're typing also.
-        items = wf.filter(query, phonebook, key_for_entries)
-    elif (len(query) == 0):
+    if (len(query) == 0):
         items = []
         for item in phonebook:
             if wf.args[0] == "update":
@@ -60,40 +55,44 @@ def main(wf):
                 valid=True
             )
         wf.send_feedback()
+    else:
+        # and look up what they're typing also.
+        items = wf.filter(query, phonebook, key_for_entries)
 
-    if (len(query) > 0 ) and (not items) and (valid_number is None) and (phonebook):
-        wf.add_item(
-            title="No matches found",
-            icon=workflow.ICON_WARNING
-        )
-    elif (valid_number is not None):
-        wf.add_item(
-            title="Valid non-phonebook number",
-            subtitle="Selecting this item will join the line above",
-            arg=valid_number,
-            icon=workflow.ICON_ACCOUNT,
-            valid=True
-        )
-        wf.send_feedback()
-
-    if wf.args[0] == "read" or wf.args[0] == "delete":
-        for item in items:
+        # user might be typing in a meeting number that we don't have an entry for
+        if (len(query) > 0 ) and (not items) and (valid_number is None) and (phonebook):
             wf.add_item(
-                title=item['desc'],
-                subtitle=item['line'],
-                arg=item['line'],
+                title="No matches found",
+                icon=workflow.ICON_WARNING
+            )
+        elif (valid_number is not None):
+            wf.add_item(
+                title="Valid non-phonebook number",
+                subtitle="Selecting this item will join the line above",
+                arg=valid_number,
+                icon=workflow.ICON_ACCOUNT,
                 valid=True
             )
-        wf.send_feedback()
-    elif wf.args[0] == "update":
-        for item in items:
-            wf.add_item(
-                title=item['desc'],
-                subtitle=item['line'],
-                arg=item['desc'],
-                valid=True
-            )
-        wf.send_feedback()
+            wf.send_feedback()
+
+        if wf.args[0] == "read" or wf.args[0] == "delete":
+            for item in items:
+                wf.add_item(
+                    title=item['desc'],
+                    subtitle=item['line'],
+                    arg=item['line'],
+                    valid=True
+                )
+            wf.send_feedback()
+        elif wf.args[0] == "update":
+            for item in items:
+                wf.add_item(
+                    title=item['desc'],
+                    subtitle=item['line'],
+                    arg=item['desc'],
+                    valid=True
+                )
+            wf.send_feedback()
 
 def key_for_entries(book):
     return '{} {}'.format(book['line'], book['desc'])

@@ -8,7 +8,7 @@ import sys
 import workflow
 from workflow.notify import notify
 
-from goto_validate import sanitizeNum
+from util import sanitizeNum
 
 def main(wf):
 
