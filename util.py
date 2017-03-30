@@ -3,7 +3,6 @@
 
 import logging
 import re
-import requests
 import string
 
 # two small funcs to validate gotomeeting numbers
@@ -50,7 +49,13 @@ def idGetter(url):
     log.debug(url_match)
 
     if url_match is not None:
-        html = requests.get(url).text
+        try:
+            import requests
+        except ImportError as e:
+            raise e
+
+        if requests:
+            html = requests.get(url).text
     else:
         return None
 
