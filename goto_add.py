@@ -7,11 +7,10 @@ import os
 import string
 import sys
 import workflow
-from workflow.notify import notify
 
+from workflow.notify import notify
 from util import sanitizeNum
 from util import idGetter
-
 log = None
 
 def main(wf):
@@ -49,7 +48,12 @@ def main(wf):
         if valid_number is None:
             flag = "not_num"
             # maybe the number was a url instead, we should grab the url id
-            valid_number = idGetter(number)
+            try:
+                valid_number = idGetter(number)
+            except ImportError:
+                notify("Missing 'requests' Python module", "GotoMeeting Tools is missing a Python module. Please use pip or easy_install to install 'requests'")
+                return
+
             if valid_number is None:
                 flag = "not_url"
         log.debug(str(number) + " returned: " + str(valid_number))

@@ -5,6 +5,7 @@ This is an Alfred 3 workflow meant to assist in managing GoToMeeting lines. Each
 
 - You'll need Alfred 3 installed with the PowerPack: http://www.alfredapp.com
 - You'll need Python (which you should already have)
+- You'll also need to install the `requests` module for some functionality (converting gotomeeting urls into meeting numbers): http://docs.python-requests.org/en/master/
 - Download the latest `GoToMeeting Tools.alfredworkflow` from the GitHub releases page at https://github.com/plongitudes/GoToMeetingTools/releases
 - Double click the .alfredworkflow file to install it
 
@@ -21,7 +22,7 @@ This is an Alfred 3 workflow meant to assist in managing GoToMeeting lines. Each
 ## Usage Details
 - `go add`: is how you create new phonebook entries. The descriptor can be any combination of letters, numbers, and the following special characters: `_`, `.`, `(`, `)`, and ` `. Any other characters will be stripped.
     - `go add <description> <gotomeeting line number>`: line number here should be in the form of `111222333` or `111-222-333`.
-    - `go add <description> <gotomeeting url>`: urls like `http://gotomeet.me/customurl` will be converted into a line number and added to the phonebook.
+    - `go add <description> <gotomeeting url>`: urls like `http://gotomeet.me/customurl` or `gotomeet.me/customurl` will be converted into a line number and added to the phonebook.
 - `go join`: is the method for launching a gotomeeting line. You can start searching on name or number, whichever you remember best :)
 - `go update`: lets you modify any entry's phone number. The order of operations is:
     - type `go update` and start searching for the entry you want to modify. Once you have the right one, select it and hit enter.
@@ -37,8 +38,14 @@ This is an Alfred 3 workflow meant to assist in managing GoToMeeting lines. Each
 ## TODO
 - handle webinars
 - Allow renaming of entries in addition to modifying line numbers
+- better error messaging to the user for bad urls vs no url supplied
 
 ## Release Notes
+- 1.2.4: requiring 'requests' module
+    - Gotomeeting requires the 'requests' python module in order to turn gotomeeting urls into line numbers. Please `pip install requests` or `easy_install requests` to add this module to your system.
+- 1.2.3: Fixing ICON calls (autoupdate should be working now)
+    - ICON calls were written incorrectly, which was breaking a lot of things
+    - autoupdate feature should now be working
 - 1.2.0: Turn a gotomeet.me url into a phonebook entry
     - Added: New entry adding functionality, url instead of line number: `go add <description> <http://gotomeet.me/customname>` will now fetch a meeting number and turn it into a phonebook entry.
 
