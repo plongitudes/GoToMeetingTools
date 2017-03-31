@@ -37,7 +37,6 @@ def main(wf):
     # and now sanity checks for the query
     log.debug(query)
     if (len(query) >= 3):
-        log.debug("TESTING")
         flag = ""
         action = query[0]
         del query[0]
