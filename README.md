@@ -36,13 +36,15 @@ This is an Alfred 3 workflow meant to assist in managing GoToMeeting lines. Each
 - `go import`: import a file that replaces the current phonebook, or creates one if the user has no phonebook yet. The file must be a comma-separated csv in the form of `"123456789","Useful description goes here"`.
 
 ## TODO
+- allow `go add` to look in the clipboard for a valid url if the command is specified without a line number or valid url
+- allow `go join` to join a meeting from a url or a url in clipboard
 - handle webinars
 - Allow renaming of entries in addition to modifying line numbers
 - better error messaging to the user for bad urls vs no url supplied
 
 ## Release Notes
 - 1.2.5: fixing 100% cpu bug
-    - See https://github.com/deanishe/alfred-workflow/issues/111 for details. GoToMeeting workflow uses alfred-workflow 1.25 now, which fixes the issue (hang on autoupdate check)
+    - See https://github.com/deanishe/alfred-workflow/issues/111 for details. GoToMeeting Tools workflow uses alfred-workflow 1.25 now, which fixes the issue (hang on autoupdate check)
 - 1.2.4: requiring 'requests' module
     - Gotomeeting requires the 'requests' python module in order to turn gotomeeting urls into line numbers. Please `pip install requests` or `easy_install requests` to add this module to your system.
 - 1.2.3: Fixing ICON calls (autoupdate should be working now)
