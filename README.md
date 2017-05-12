@@ -43,6 +43,7 @@ This is an Alfred 3 workflow meant to assist in managing GoToMeeting lines. Each
 - better error messaging to the user for bad urls vs no url supplied
 
 ## Release Notes
+- 1.2.6: moving to Alfred-Workflow 1.26
 - 1.2.5: fixing 100% cpu bug
     - See https://github.com/deanishe/alfred-workflow/issues/111 for details. GoToMeeting Tools workflow uses alfred-workflow 1.25 now, which fixes the issue (hang on autoupdate check)
 - 1.2.4: requiring 'requests' module
