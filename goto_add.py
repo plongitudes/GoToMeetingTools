@@ -11,6 +11,9 @@ import workflow
 from workflow.notify import notify
 from util import sanitizeNum
 from util import idGetter
+
+import osascript_bug_patch
+
 log = None
 
 def main(wf):

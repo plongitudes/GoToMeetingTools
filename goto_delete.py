@@ -7,7 +7,10 @@ import os
 import string
 import sys
 import workflow
+
 from workflow.notify import notify
+
+import osascript_bug_patch
 
 log = None
 

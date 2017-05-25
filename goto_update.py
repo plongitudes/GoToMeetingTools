@@ -6,9 +6,11 @@ import os
 import string
 import sys
 import workflow
-from workflow.notify import notify
 
+from workflow.notify import notify
 from util import sanitizeNum
+
+import osascript_bug_patch
 
 def main(wf):
 

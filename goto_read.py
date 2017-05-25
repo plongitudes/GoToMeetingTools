@@ -8,6 +8,8 @@ import workflow
 
 from util import sanitizeNum
 
+import osascript_bug_patch
+
 def main(wf):
 
     log.debug('Started')

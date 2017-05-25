@@ -7,9 +7,11 @@ import os
 import sys
 import string
 import workflow
-from workflow.notify import notify
 
+from workflow.notify import notify
 from util import sanitizeNum
+
+import osascript_bug_patch
 
 log = None
 
